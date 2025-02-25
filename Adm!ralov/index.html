@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Адмиралов - Услуги</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="kotik.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes floatClouds {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        @keyframes fallingStars {
+            from { transform: translateY(-10vh); opacity: 1; }
+            to { transform: translateY(100vh); opacity: 0; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        body {
+            background: linear-gradient(45deg, #000000, #4B0082);
+            background-size: 300% 300%;
+            animation: backgroundAnimation 10s ease infinite;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .clouds {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: url('https://i.imgur.com/NuWnpVb.png') repeat-x;
+            animation: floatClouds 20s linear infinite;
+        }
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fallingStars 5s linear infinite;
+        }
+        .container {
+            max-width: 900px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1.5s ease-out;
+            margin-top: 50px;
+            text-align: center;
+        }
+        .button, .btn-group .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .button {
+            background: linear-gradient(90deg, #8A2BE2, #4B0082);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.6);
+        }
+        .button:hover {
+            background: linear-gradient(90deg, #6A0DAD, #32006E);
+            box-shadow: 0 0 25px rgba(138, 43, 226, 0.9);
+            transform: scale(1.1);
+        }
+        .btn-group .btn {
+            background: linear-gradient(45deg, #8A2BE2, #4B0082);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.6);
+            animation: fadeIn 2s ease-out;
+        }
+        .btn-group .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.9);
+            transition: all 0.3s ease-in-out;
+        }
+        .avatar-container {
+            position: relative;
+            top: 20px;
+            text-align: center;
+        }
+        .avatar-container img {
+            border: 4px solid rgb(110, 6, 170);
+            padding: 6px;
+            border-radius: 50%;
+            transition: transform 0.3s ease-in-out;
+            animation: fadeIn 2.5s ease-out;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px; /* Место между аватаром и кнопками */
+        }
+        .cat-window {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 150px;
+            height: 200px;
+            background: url('https://i.imgur.com/RHhUBtO.png') no-repeat center/cover;
+        }
+
+        #cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #8A2BE2;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: all 0.1s ease;
+        }
+
+        .button:hover {
+            cursor: pointer;
+        }
+
+        .time {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .quotes-container {
+            position: fixed;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18px;
+            color: white;
+            font-style: italic;
+            z-index: 10;
+            text-align: center;
+            padding: 10px; /* Отступы для предотвращения наложения */
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="clouds"></div>
+    
+    <div class="time" id="time"></div>
+    
+    <div class="quotes-container" id="quotes"></div>
+
+    <div class="container">
+        <h1 class="text-4xl fw-bold text-uppercase">Адмиралов</h1>
+        <p class="text-light">Ваши надёжные услуги</p>
+        <a href="https://t.me/admirralov_bot" class="button">Перейти к услугам</a>
+    </div>
+    
+    <div class="avatar-container">
+        <img src="image/photo_2025-01-31_12-12-44.jpg" alt="Аватар" class="rounded-circle" width="120">
+    </div>
+
+    <div class="btn-group">
+        <a href="https://t.me/admiraIov" class="btn">ЛС</a>
+        <a href="https://t.me/admirralov_bot" class="btn">Спам блок?</a>
+        <a href="https://t.me/+xbxPgSwDf_w2NzE6" class="btn">ТГК</a>
+        <a href="https://www.tiktok.com/@asmiraiov?_t=ZG-8uDJzqhGkSn&_r=1" class="btn">Тик-ток</a>
+    </div>
+
+    <div class="cat-window"></div>
+
+    <script>
+        function updateTime() {
+            const timeElement = document.getElementById('time');
+            const date = new Date();
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+            let seconds = date.getSeconds();
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        const quotes = [
+            "Будь собой, все остальные роли уже заняты.",
+            "Верь в себя и все будет возможно.",
+            "Секрет в том, чтобы никогда не сдаваться.",
+            "Делай то, что любишь, и тебе не придется работать ни дня в своей жизни.",
+            "Успех — это не конечный результат, а путь, который ты проходишь."
+        ];
+
+        function displayQuote() {
+            const quoteElement = document.getElementById('quotes');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            quoteElement.textContent = `"${randomQuote}"`;
+        }
+
+        setInterval(updateTime, 1000);
+        setInterval(displayQuote, 10000);
+    </script>
+</body>
+</html>
